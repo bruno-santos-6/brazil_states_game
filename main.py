@@ -48,10 +48,7 @@ while len(guessed_states) < 27:
     answer_state_refined = remove_accents_and_special_characters(answer_state).lower()
 
     if answer_state_refined == "exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if state not in guessed_states]
         new_data = pd.DataFrame(missing_states)
         new_data.to_csv("states_to_learn.csv")
         break
